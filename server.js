@@ -84,7 +84,7 @@ app.get("/fruits/:fruitId/edit", async (req, res) => {
     })
 })
 
-/* ----- POST ROUTES ----- */
+/* ----- POST ROUTE ----- */
 
 app.post("/fruits", async (req, res) => { // creating our POST route for the form submission on "fruits/new.ejs"
    // console.log(req.body) // just testing form submission info is coming back as an object
@@ -108,7 +108,7 @@ app.post("/fruits", async (req, res) => { // creating our POST route for the for
 })
 
 
-/* ----- PUT ROUTES ----- */
+/* ----- PUT ROUTE ----- */
 
 app.put("/fruits/:fruitId", async (req, res) => {
     if (req.body.isReadyToEat === "on") {
@@ -120,6 +120,12 @@ app.put("/fruits/:fruitId", async (req, res) => {
    res.redirect(`/fruits/${req.params.fruitId}`) // directing back to fruit show page
 })
 
+/* ----- DELETE ROUTE ----- */
+
+app.delete("/fruits/:fruitId", async (req, res) => {
+    await Fruit.findByIdAndDelete(req.params.fruitId)
+    res.redirect("/fruits")
+})
 
 
 

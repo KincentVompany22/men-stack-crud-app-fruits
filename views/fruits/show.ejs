@@ -13,7 +13,9 @@
         <p>It's NOT ready to eat</p>
     <% } %>
 
-
+    <form action="/fruits/<%=fruit._id%>?_method=DELETE" method="POST"> <!-- "?_method=DELETE" - override method looks for this and changes method to DELETE. So even though method says post, its being overrided with DELETE-->
+        <button type="submit">Delete <%= fruit.name %></button>
+    </form>
 
 
     <a href="/fruits">Browse Fruits</a> <!-- link to go back to index page -->
