@@ -4,23 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> <%= fruit.name %> </title>
+    <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
-    <h1> <%= fruit.name %> </h1>
-    <% if (fruit.isReadyToEat) { %>
-        <p>This fruit is ready to eat</p>
-    <% } else { %>
-        <p>It's NOT ready to eat</p>
-    <% } %>
 
-    <form action="/fruits/<%=fruit._id%>?_method=DELETE" method="POST"> <!-- "?_method=DELETE" - override method looks for this and changes method to DELETE. So even though method says post, its being overrided with DELETE-->
-        <button type="submit">Delete <%= fruit.name %></button>
-    </form>
+    <div class="fruit-details">
+        <h1> <%= fruit.name %> </h1>
+        <% if (fruit.isReadyToEat) { %>
+            <p>This fruit is ready to eat</p>
+        <% } else { %>
+            <p>It's NOT ready to eat</p>
+        <% } %>
+
+        <div class="fruit-actions">
+            <form action="/fruits/<%=fruit._id%>?_method=DELETE" method="POST"> <!-- "?_method=DELETE" - override method looks for this and changes method to DELETE. So even though method says post, its being overrided with DELETE-->
+                <button type="submit">Delete <%= fruit.name %></button>
+            </form>
+        </div>
+    </div>
 
 
-    <a href="/fruits">Browse Fruits</a> <!-- link to go back to index page -->
-    <a href="/fruits/new">Add Fruits</a> <!-- link to go to form page -->
-    <a href="/fruits/<%=fruit.id%>/edit">Edit</a> <!-- link to go to edit page -->
+    <a class="fruits-index-link" href="/fruits">  <!-- link to go back to index page -->
+        <div class="index-link-text">Back to Fruits</div>
+    </a>
+    <a class="fruits-index-link" href="/fruits/<%=fruit.id%>/edit">  <!-- link to go to edit page -->
+        <div class="index-link-text">Edit Fruit</div>
+    </a>
 
 </body>
 </html>

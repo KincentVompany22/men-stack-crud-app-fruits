@@ -4,20 +4,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Update Fruit</title>
+    <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
     <h1>Edit <% fruit.name %> </h1>
     <form action="/fruits/<%=fruit.id%>?_method=PUT" method="POST"> <!-- "?_method=PUT" - override method looks for this and changes method to PUT. So even though method says post, its being overrided with PUT-->
+        
         <label for="name">Name:</label>
         <input type="text" name="name" id="name" value=" <%= fruit.name %> " />
 
+      <div class="checkbox-div">
         <label for="isReadyToEat">Ready to Eat?</label>
         <input type="checkbox" name="isReadyToEat" id="isReadyToEat" <% if (fruit.isReadyToEat) { %> checked <% } %> />
+      </div>
 
         <button type="submit">Edit Fruit</button>
     </form>
 
-    <a href="/fruits">Back to Fruits</a> <!-- link to go back to index page -->
+    <a class="fruits-index-link" href="/fruits">  <!-- link to go back to index page -->
+        <div class="index-link-text">Back to Fruits</div>
+    </a>
 
   </body>
 </html>

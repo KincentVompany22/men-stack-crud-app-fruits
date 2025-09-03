@@ -33,6 +33,10 @@ const methodOverride = require("method-override")
 
 const morgan = require("morgan") 
 
+// Importing Public Directory - to use CSS
+
+app.use(express.static("public"))
+
 // Importing Fruits Model
 
 const Fruit = require("./models/fruit.js")
