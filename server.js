@@ -33,9 +33,10 @@ app.use(express.urlencoded({ extended: true })) // "express.urlencoded" middlewa
 
 // GET routes
 
-app.get("/", async (req, res) => { // rendering the index.ejs page content in the browser
-    res.render("index.ejs")
-})
+// Initial route to see base index page. Built out further in route below
+// app.get("/", async (req, res) => { // rendering the index.ejs page content in the browser
+//     res.render("index.ejs")
+// })
 
 app.get("/fruits", async (req,res) => { // render index.ejs template with all the fruits
     const allFruits = await Fruit.find()
@@ -45,9 +46,17 @@ app.get("/fruits", async (req,res) => { // render index.ejs template with all th
         // The second argument is an object containing the data we want to pass to the template. 
 })
 
-app.get("/fruits/new", (req, res) => {
+app.get("/fruits/new", (req, res) => { // render fruits/new.ejs template with all the fruits
     res.render("fruits/new.ejs")
 })
+
+app.get("/fruits/:fruitId",  async (req, res) => {
+    // console.log(req.params.fruitId) // testing fruitId is appearing
+    const foundFruit = await Fruit.findById(req.params.fruitId)
+    res.render("fruits/show.ejs", { fruit: foundFruit })
+})
+
+
 
 // POST route
 

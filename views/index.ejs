@@ -9,7 +9,7 @@
     <h1>All Fruits</h1>
     <ul>
         <% fruits.forEach((fruit) => { %> <!-- Now using operator tags to loop through and display all of our fruits-->
-            <li> <%= fruit.name %> </li>
+            <li> <a href="/fruits/<%= fruit._id %>"> <%= fruit.name %> </a> </li> <!-- the fruit._id gets the ID from the object in the data-->
        <% }) %>
     </ul>
 
