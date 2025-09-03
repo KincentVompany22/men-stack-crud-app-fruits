@@ -20,6 +20,11 @@ db.on("error", (err) => {console.log("ERROR: ", err)}) // connection message tha
 db.on("connected", () => {console.log(`Conntected to MongoDB ${mongoose.connection.name}.`)}) // connection message that will print to our terminal when we’ve connected to the database
 db.on("disconnected", () => {console.log("mongo disconnected")}) // connection message that will print to our terminal when we’ve disconnected
 
+// Importing Fruits Model
+
+const Fruit = require("./models/fruit.js")
+
+
 
 /* --- ROUTES --- */
 
