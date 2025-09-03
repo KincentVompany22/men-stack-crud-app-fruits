@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Update Fruit</title>
+  </head>
+  <body>
+    <h1>Edit <% fruit.name %> </h1>
+    <form action="/fruits/<%=fruit.id%>?_method=PUT" method="POST"> <!-- "?_method=PUT" - override method looks for this and changes method to PUT. So even though method says post, its being overrided with PUT-->
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" value=" <%= fruit.name %> " />
+
+        <label for="isReadyToEat">Ready to Eat?</label>
+        <input type="checkbox" name="isReadyToEat" id="isReadyToEat" <% if (fruit.isReadyToEat) { %> checked <% } %> />
+
+        <button type="submit">Edit Fruit</button>
+    </form>
+
+    <a href="/fruits">Back to Fruits</a> <!-- link to go back to index page -->
+
+  </body>
+</html>

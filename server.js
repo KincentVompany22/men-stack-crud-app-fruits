@@ -45,7 +45,7 @@ app.use(morgan("dev"))
 
 /* ------------ ROUTES ------------ */
 
-// GET routes
+/* ----- GET ROUTES ----- */
 
 // Initial route to see base index page. Built out further in route below
 // app.get("/", async (req, res) => { // rendering the index.ejs page content in the browser
@@ -64,15 +64,27 @@ app.get("/fruits/new", (req, res) => { // render fruits/new.ejs template with al
     res.render("fruits/new.ejs")
 })
 
+// SHOW Route 
+    // to render show.ejs
+
 app.get("/fruits/:fruitId",  async (req, res) => {
     // console.log(req.params.fruitId) // testing fruitId is appearing
     const foundFruit = await Fruit.findById(req.params.fruitId)
     res.render("fruits/show.ejs", { fruit: foundFruit })
 })
 
+// EDIT Route 
+    // to render edit.ejs
 
+app.get("/fruits/:fruitId/edit", async (req, res) => {
+    const foundFruit = await Fruit.findById(req.params.fruitId)
+    console.log(foundFruit)
+    res.render("fruits/edit.ejs", {
+        fruit: foundFruit
+    })
+})
 
-// POST route
+/* ----- POST ROUTES ----- */
 
 app.post("/fruits", async (req, res) => { // creating our POST route for the form submission on "fruits/new.ejs"
    // console.log(req.body) // just testing form submission info is coming back as an object
@@ -94,6 +106,21 @@ app.post("/fruits", async (req, res) => { // creating our POST route for the for
     }    
     res.redirect("/fruits") // redirects the user back to the index page (best practice for form submissions)
 })
+
+
+/* ----- PUT ROUTES ----- */
+
+app.put("/fruits/:fruitId", async (req, res) => {
+    if (req.body.isReadyToEat === "on") {
+    req.body.isReadyToEat = true
+   } else {
+    req.body.isReadyToEat = false
+   }
+   await Fruit.findByIdAndUpdate(req.params.fruitId, req.body)
+   res.redirect(`/fruits/${req.params.fruitId}`) // directing back to fruit show page
+})
+
+
 
 
 /* ------------ LISTENERS ------------ */
