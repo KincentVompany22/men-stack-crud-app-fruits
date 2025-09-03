@@ -1,5 +1,5 @@
 
-/* --- IMPORTED MODULES --- */
+/* ------------ IMPORTED MODULES ------------ */
 
 // Importing Express
 const express = require("express")
@@ -26,13 +26,19 @@ const Fruit = require("./models/fruit.js")
 
 
 
-/* --- ROUTES --- */
+/* ------------ ROUTES ------------ */
 
 app.get("/", async (req, res) => { // rendering the index.ejs page content in the browser
     res.render("index.ejs")
 })
 
-/* --- LISTENER --- */
+app.get("/fruits/new", (req, res) => {
+    res.render("fruits/new.ejs")
+})
+
+
+
+/* ------------ LISTENERS ------------ */
 
 app.listen(PORT, () => {
     console.log(`Server is listening on PORT: ${PORT}`) // see imported modules
