@@ -24,6 +24,11 @@ db.on("disconnected", () => {console.log("mongo disconnected")}) // connection m
 
 const Fruit = require("./models/fruit.js")
 
+// Importing "express.urlencoded" Middleware
+    // This middleware parses incoming request bodies, extracting form data and converting it into a JavaScript object.
+
+app.use(express.urlencoded({ extended: false }))
+
 
 
 /* ------------ ROUTES ------------ */
@@ -34,6 +39,11 @@ app.get("/", async (req, res) => { // rendering the index.ejs page content in th
 
 app.get("/fruits/new", (req, res) => {
     res.render("fruits/new.ejs")
+})
+
+app.post("/fruits", async (req, res) => { // creating our POST route for the form submission on "fruits/new.ejs"
+    console.log(req.body)
+    res.redirect("/fruits/new.ejs")
 })
 
 
