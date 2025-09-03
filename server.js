@@ -37,6 +37,14 @@ app.get("/", async (req, res) => { // rendering the index.ejs page content in th
     res.render("index.ejs")
 })
 
+app.get("/fruits", async (req,res) => { // render index.ejs template with all the fruits
+    const allFruits = await Fruit.find()
+    // console.log(allFruits) // just checking that all fruit data is populating in terminal
+    res.render("index.ejs", {fruits: allFruits}) // The .render() method takes two arguments:
+        // The first argument is a string specifying the path to the EJS template we wish to render. In our case, it’s ‘fruits/index.ejs’.
+        // The second argument is an object containing the data we want to pass to the template. 
+})
+
 app.get("/fruits/new", (req, res) => {
     res.render("fruits/new.ejs")
 })
@@ -61,7 +69,7 @@ app.post("/fruits", async (req, res) => { // creating our POST route for the for
         console.log(err)
         res.status(500).send(err)
     }    
-    res.redirect("/fruits/new") // redirects the user back to the form page (best practice for form submissions)
+    res.redirect("/fruits") // redirects the user back to the index page (best practice for form submissions)
 })
 
 
